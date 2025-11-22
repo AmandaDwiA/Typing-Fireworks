@@ -1,0 +1,69 @@
+body {
+    background-color: #6a0dad; /* Warna ungu background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+
+#fireworksInput {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    font-size: 2em;
+    padding: 10px 0;
+    text-align: left;
+    outline: none;
+    width: 400px;
+    transition: border-color 0.3s;
+}
+
+#fireworksInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Penampung partikel harus di atas segalanya */
+#particleContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Penting agar tidak menghalangi interaksi */
+    z-index: 5;
+}
+
+/* Gaya partikel */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0; /* Mulai dengan transparan */
+    animation: explode 0.8s ease-out forwards;
+}
+
+/* Keyframes untuk animasi ledakan */
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        /* Jarak partikel menyebar, nilai ini diatur oleh JS */
+        transform: translate(var(--dx), var(--dy)) scale(0); 
+        opacity: 0;
+    }
+}
